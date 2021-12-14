@@ -1,22 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react'
-import {
-  View,
-  StyleSheet,
-  Animated,
-  Image,
-  TouchableOpacity,
-} from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, StyleSheet, Image, TouchableOpacity, Modal } from 'react-native'
 import LottieView from 'lottie-react-native'
-import cards from '../../assets/cardsIndex'
 import starry_night from '../../assets/starry_night.json'
-import card_back from '../../assets/cards/card-back.png'
 import Loading from './LoadScreen'
-import About from '../modals/About'
 import Cards from '../modals/Cards'
 import show from '../../assets/icons/show.png'
 import hide from '../../assets/icons/hide.png'
 
-import { Colors, Title } from '../../styles'
+import { Colors, Title, AboutCard, Text, Button, Italic } from '../../styles'
 
 // Colors Import
 const { eggplant } = Colors
@@ -36,20 +27,18 @@ export default function Home({ navigation }) {
 
   return (
     <LottieView style={styles.main} source={starry_night} autoPlay>
-      <View style={{ paddingTop: `20%` }}>
+      <View style={{ paddingTop: `25%` }}>
         <Title>Invoke</Title>
 
         <View
           style={{
             position: 'absolute',
-            top: 75,
+            top: 90,
             left: 15,
           }}
         >
           {showHowto ? (
-            <TouchableOpacity onPress={() => setHowto(false)}>
-              <Image style={{ height: 50, width: 50 }} source={hide} />
-            </TouchableOpacity>
+            <Image style={{ height: 50, width: 50 }} source={hide} />
           ) : (
             <TouchableOpacity onPress={() => setHowto(true)}>
               <Image style={{ height: 50, width: 50 }} source={show} />
@@ -57,7 +46,29 @@ export default function Home({ navigation }) {
           )}
         </View>
 
-        {showHowto ? <About /> : <></>}
+        <Modal animationType={'fade'} transparent={true} visible={showHowto}>
+          <AboutCard>
+            <Button
+              onPress={() => setHowto(false)}
+              style={{
+                alignSelf: 'flex-end',
+                zIndex: 1
+              }}
+            >
+              <Italic>Close</Italic>
+            </Button>
+            <Title style={{ marginBottom: 15, marginTop: -40 }}>How To</Title>
+            <Text>
+              Invoke draws a 3-card balanced spread to evaluate your 1.
+              Physical, 2. Emotional, and 3. Spiritual State. You can also view
+              them as what you think, feel and will do.
+              {'\n'}
+              {'\n'}
+              In this layout, each card of the spread has a common intersection,
+              without each other the connection collapses.
+            </Text>
+          </AboutCard>
+        </Modal>
       </View>
       <Cards />
     </LottieView>

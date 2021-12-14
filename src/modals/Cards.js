@@ -20,10 +20,10 @@ import {
 } from '../../styles'
 
 export default function Cards() {
+  const [loading, setLoading] = useState(true)
   const [firstCard, setFirstCard] = useState(cards.Default)
   const [secondCard, setSecondCard] = useState(cards.Default)
   const [thirdCard, setThirdCard] = useState(cards.Default)
-  const [loading, setLoading] = useState(true)
   const [showModal1, setModal1] = useState(false)
   const [showModal2, setModal2] = useState(false)
   const [showModal3, setModal3] = useState(false)
@@ -114,31 +114,26 @@ export default function Cards() {
       >
         <Description
           style={{
-            height: '70%',
+            height: '60%',
             marginTop: 'auto',
           }}
         >
           <Button
             onPress={() => setModal1(false)}
             style={{
-              border: 0,
-              backgroundColor: 'transparent',
-              height: 40,
               alignSelf: 'flex-end',
             }}
           >
             <Italic>Close</Italic>
           </Button>
 
+          <Title style={{ marginBottom: 15 }}>{firstCard.name}</Title>
+          {firstCard.description ? (
+            <Italic style={{ marginBottom: 15 }}>{firstCard.words}</Italic>
+          ) : (
+            <></>
+          )}
           <ScrollView>
-            <Title style={{ marginBottom: 15 }}>{firstCard.name}</Title>
-
-            {firstCard.description ? (
-              <Italic style={{ marginBottom: 15 }}>{firstCard.words}</Italic>
-            ) : (
-              <></>
-            )}
-
             {firstCard.description ? (
               <Text>{firstCard.description}</Text>
             ) : (
@@ -159,31 +154,26 @@ export default function Cards() {
       >
         <Description
           style={{
-            height: '70%',
+            height: '60%',
             marginTop: 'auto',
           }}
         >
           <Button
             onPress={() => setModal2(false)}
             style={{
-              border: 0,
-              backgroundColor: 'transparent',
-              height: 40,
               alignSelf: 'flex-end',
             }}
           >
             <Italic>Close</Italic>
           </Button>
 
+          <Title style={{ marginBottom: 15 }}>{secondCard.name}</Title>
+          {secondCard.description ? (
+            <Italic style={{ marginBottom: 15 }}>{secondCard.words}</Italic>
+          ) : (
+            <></>
+          )}
           <ScrollView>
-            <Title style={{ marginBottom: 15 }}>{secondCard.name}</Title>
-
-            {secondCard.description ? (
-              <Italic style={{ marginBottom: 15 }}>{secondCard.words}</Italic>
-            ) : (
-              <></>
-            )}
-
             {secondCard.description ? (
               <Text>{secondCard.description}</Text>
             ) : (
@@ -204,31 +194,26 @@ export default function Cards() {
       >
         <Description
           style={{
-            height: '70%',
+            height: '60%',
             marginTop: 'auto',
           }}
         >
           <Button
             onPress={() => setModal3(false)}
             style={{
-              border: 0,
-              backgroundColor: 'transparent',
-              height: 40,
               alignSelf: 'flex-end',
             }}
           >
             <Italic>Close</Italic>
           </Button>
+          <Title style={{ marginBottom: 15 }}>{thirdCard.name}</Title>
 
+          {thirdCard.description ? (
+            <Italic style={{ marginBottom: 15 }}>{thirdCard.words}</Italic>
+          ) : (
+            <></>
+          )}
           <ScrollView>
-            <Title style={{ marginBottom: 15 }}>{thirdCard.name}</Title>
-
-            {thirdCard.description ? (
-              <Italic style={{ marginBottom: 15 }}>{thirdCard.words}</Italic>
-            ) : (
-              <></>
-            )}
-
             {thirdCard.description ? (
               <Text>{thirdCard.description}</Text>
             ) : (

@@ -11,13 +11,9 @@ const { eggplant, mauve, lavender, white } = Colors
 
 // Shared Components
 export const Button = styled.TouchableOpacity`
-  border-radius: 100px;
-  background-color: ${mauve};
-  width: 100px;
-  height: 100px;
   align-self: center;
   justify-content: center;
-  box-shadow: 1px 1px 5px ${mauve};
+  margin: 10px 0 10px 0;
 `
 
 export const ButtonText = styled.Text`
@@ -59,10 +55,11 @@ export const Tarot = styled.Image`
 
 export const AboutCard = styled.View`
   align-self: center;
-  padding: 25px;
-  width: 300px;
+  padding: 30px;
+  width: 325px;
   border: 1px solid ${white};
   background-color: ${eggplant};
+  border-radius: 10px;
   position: absolute;
   top: 200px;
 `
@@ -71,6 +68,7 @@ export const Container = styled.View`
   padding: 25px;
   display: flex;
   justify-content: space-between;
+  align-content: center;
   z-index: -1;
 `
 
