@@ -57,10 +57,21 @@ export const Tarot = styled.Image`
   max-height: 175px;
 `
 
+export const AboutCard = styled.View`
+  align-self: center;
+  padding: 25px;
+  width: 300px;
+  border: 1px solid ${white};
+  background-color: ${eggplant};
+  position: absolute;
+  top: 200px;
+`
+
 export const Container = styled.View`
   padding: 25px;
   display: flex;
   justify-content: space-between;
+  z-index: -1;
 `
 
 export const Text = styled.Text`
@@ -100,14 +111,4 @@ export const Rotated = styled.View`
 export const TopCard = styled.View`
   align-self: center;
   padding: 15px;
-`
-
-export const AboutCard = styled.View`
-  align-self: center;
-  padding: 25px;
-  width: 300px;
-  border: 1px solid ${white};
-  background-color: ${eggplant};
-  position: absolute;
-  z-index: 2;
 `

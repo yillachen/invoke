@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { View, StyleSheet, Animated } from 'react-native'
+import { View, Animated, Modal, Text } from 'react-native'
 import cards from '../../assets/cardsIndex'
-import card_back from '../../assets/cards/card-back.png'
 import Loading from '../screens/LoadScreen'
-import About from '../modals/About'
 
 import {
   Colors,
@@ -14,49 +12,23 @@ import {
   Tarot,
   Rotated,
   TopCard,
-  Reset, ResetText
+  Reset,
+  ResetText,
 } from '../../styles'
 
 // Colors Import
 const { eggplant } = Colors
 
 export default function Cards() {
-  const [firstCard, setFirstCard] = useState(card_back)
-  const [secondCard, setSecondCard] = useState(card_back)
-  const [thirdCard, setThirdCard] = useState(card_back)
+  const [firstCard, setFirstCard] = useState(cards.Default)
+  const [secondCard, setSecondCard] = useState(cards.Default)
+  const [thirdCard, setThirdCard] = useState(cards.Default)
   const [loading, setLoading] = useState(true)
-  const [showHowto, setHowto] = useState(false)
-
-  // fade in instructions
-
-  // flip card animation
-  const flipAnimation = useRef(new Animated.Value(0)).current
-  let flipRotation = 0
-  flipAnimation.addListener(({ value }) => (flipRotation = value))
-  const flipToFrontStyle = {
-    transform: [
-      {
-        rotateY: flipAnimation.interpolate({
-          inputRange: [0, 180],
-          outputRange: ['0deg', '180deg'],
-        }),
-      },
-    ],
-  }
-  const flipToBackStyle = {
-    transform: [
-      {
-        rotateY: flipAnimation.interpolate({
-          inputRange: [0, 180],
-          outputRange: ['180deg', '360deg'],
-        }),
-      },
-    ],
-  }
+  const [showModal, setModal] = useState(false)
 
   // picks a random key in cards object
   function randomize(obj) {
-    var keys = Object.keys(obj)
+    var keys = Object.keys(obj);
     return obj[keys[(keys.length * Math.random()) << 0]]
   }
 
@@ -67,11 +39,12 @@ export default function Cards() {
 
   // reveal cards one by one
   const flipCards = () => {
-    if (firstCard === 77) {
+    if (firstCard === cards.Default) {
       setFirstCard(randomize(cards))
-    } else if (firstCard !== 77 && secondCard === 77) {
+      // setModal(true)
+    } else if (firstCard !== cards.Default && secondCard === cards.Default) {
       setSecondCard(randomize(cards))
-    } else if (firstCard !== 77 && secondCard !== 77 && thirdCard === 77) {
+    } else if (firstCard !== cards.Default && secondCard !== cards.Default && thirdCard === cards.Default) {
       setThirdCard(randomize(cards))
     } else {
       alert('All cards are revealed. 🔮')
@@ -80,20 +53,24 @@ export default function Cards() {
 
   // reset cards
   const reset = () => {
-    setFirstCard(card_back)
-    setSecondCard(card_back)
-    setThirdCard(card_back)
+    setFirstCard(cards.Default)
+    setSecondCard(cards.Default)
+    setThirdCard(cards.Default)
   }
 
   if (loading) {
     return <Loading />
   }
 
+  console.log('ONE', firstCard)
+  console.log('TWO', secondCard)
+  console.log('THREE', thirdCard)
+
   return (
     <Container>
       <TopCard>
         <Card>
-          <Tarot source={firstCard} />
+          <Tarot source={firstCard.image} />
         </Card>
       </TopCard>
 
@@ -105,10 +82,10 @@ export default function Cards() {
 
       <Rotated>
         <Card style={{ transform: [{ rotate: '22.5deg' }] }}>
-          <Tarot source={secondCard} />
+          <Tarot source={secondCard.image} />
         </Card>
         <Card style={{ transform: [{ rotate: '-22.5deg' }] }}>
-          <Tarot source={thirdCard} />
+          <Tarot source={thirdCard.image} />
         </Card>
       </Rotated>
       <View
@@ -123,6 +100,17 @@ export default function Cards() {
           <ResetText>Reset</ResetText>
         </Reset>
       </View>
+      <Modal
+        animationType={'slide'}
+        transparent={false}
+        visible={showModal}
+        onRequestClose={() => {
+          setModal(false)
+        }}
+      >
+        <Text style={{ color: `${eggplant}` }}>{firstCard.description}</Text>
+        <Button onPress={() => setModal(false)}><ButtonText>Close</ButtonText></Button>
+      </Modal>
     </Container>
   )
 }
