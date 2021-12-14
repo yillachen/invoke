@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, Image } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
+import { View, StyleSheet, Image, Animated } from 'react-native'
 import LottieView from 'lottie-react-native'
 import cards from '../../assets/cardsIndex'
 import starry_night from '../../assets/starry_night.json'
 import card_back from '../../assets/cards/card-back.png'
 import Loading from './LoadScreen'
+import About from '../modals/About'
 
 import {
   Colors,
@@ -17,6 +18,8 @@ import {
   TopCard,
   Title,
   Italic,
+  Reset,
+  ResetText,
 } from '../../styles'
 
 // Colors Import
@@ -27,8 +30,32 @@ export default function Home({ navigation }) {
   const [secondCard, setSecondCard] = useState(card_back)
   const [thirdCard, setThirdCard] = useState(card_back)
   const [loading, setLoading] = useState(true)
+  const [showHowto, setHowto] = useState(false)
 
-  const [revealOne, setRevealOne] = useState(false)
+  // flip card animation
+  const flipAnimation = useRef(new Animated.Value(0)).current
+  let flipRotation = 0
+  flipAnimation.addListener(({ value }) => (flipRotation = value))
+  const flipToFrontStyle = {
+    transform: [
+      {
+        rotateY: flipAnimation.interpolate({
+          inputRange: [0, 180],
+          outputRange: ['0deg', '180deg'],
+        }),
+      },
+    ],
+  }
+  const flipToBackStyle = {
+    transform: [
+      {
+        rotateY: flipAnimation.interpolate({
+          inputRange: [0, 180],
+          outputRange: ['180deg', '360deg'],
+        }),
+      },
+    ],
+  }
 
   // picks a random key in cards object
   function randomize(obj) {
@@ -41,11 +68,24 @@ export default function Home({ navigation }) {
     return () => console.log('Unmounting...')
   }, [])
 
-  // reveal cards
-  const onPress = () => {
-    setFirstCard(randomize(cards))
-    setSecondCard(randomize(cards))
-    setThirdCard(randomize(cards))
+  // reveal cards one by one
+  const flipCards = () => {
+    if (firstCard === 77) {
+      setFirstCard(randomize(cards))
+    } else if (firstCard !== 77 && secondCard === 77) {
+      setSecondCard(randomize(cards))
+    } else if (firstCard !== 77 && secondCard !== 77 && thirdCard === 77) {
+      setThirdCard(randomize(cards))
+    } else {
+      alert('All cards are revealed. 🔮')
+    }
+  }
+
+  // reset cards
+  const reset = () => {
+    setFirstCard(card_back)
+    setSecondCard(card_back)
+    setThirdCard(card_back)
   }
 
   if (loading) {
@@ -57,12 +97,7 @@ export default function Home({ navigation }) {
       <Container>
         <View>
           <Title>Invoke</Title>
-          <Italic>
-            Draw a 3-card balanced spread to dive into Mind, Body and Spirit.
-            {'\n'}In this layout, each card of the spread has a common
-            intersection. They are all equally important, like three sides of a
-            pyramid. Without any of these, the whole structure collapses.
-          </Italic>
+          {showHowto ? <About /> : <></>}
         </View>
         <TopCard>
           <Card>
@@ -71,7 +106,7 @@ export default function Home({ navigation }) {
         </TopCard>
 
         <View>
-          <Button onPress={onPress}>
+          <Button onPress={flipCards}>
             <ButtonText>Reveal</ButtonText>
           </Button>
         </View>
@@ -84,6 +119,29 @@ export default function Home({ navigation }) {
             <Tarot source={thirdCard} />
           </Card>
         </Rotated>
+
+        <View
+          style={{
+            position: 'absolute',
+            bottom: `28%`,
+            alignSelf: 'center',
+            flexDirection: 'row',
+          }}
+        >
+          {showHowto ? (
+            <Reset onPress={() => setHowto(false)}>
+              <ResetText>Hide</ResetText>
+            </Reset>
+          ) : (
+            <Reset onPress={() => setHowto(true)}>
+              <ResetText>How-To</ResetText>
+            </Reset>
+          )}
+
+          <Reset onPress={reset}>
+            <ResetText>Reset</ResetText>
+          </Reset>
+        </View>
       </Container>
     </LottieView>
   )

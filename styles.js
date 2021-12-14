@@ -28,6 +28,22 @@ export const ButtonText = styled.Text`
   letter-spacing: 0.5px;
 `
 
+export const Reset = styled.TouchableOpacity`
+  border-radius: 10px;
+  background-color: ${lavender};
+  box-shadow: 1px 1px 5px ${lavender};
+  padding: 10px 15px 10px 15px;
+  margin: 0 25px 0 25px;
+`
+
+export const ResetText = styled.Text`
+  color: ${eggplant};
+  text-align: center;
+  font-family: 'Tiempos_Italic';
+  font-size: 21px;
+  letter-spacing: 0.5px;
+`
+
 export const Card = styled.View`
   border: 1px solid #000;
   background-color: #fff;
