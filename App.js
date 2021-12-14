@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useFonts } from 'expo-font'
 import { decode, encode } from 'base-64'
 import MainStack from './index'
+import Loading from './src/screens/LoadScreen'
 
 if (!global.btoa) {
   global.btoa = encode
@@ -17,5 +18,10 @@ export default function App() {
     Tiempos_Italic: require('./assets/fonts/TiemposItalic.otf'),
   })
 
-  return <MainStack {...loaded} />
+  if (loaded) {
+    return <MainStack {...loaded} />
+  } else {
+    return <></>
+  }
+
 }

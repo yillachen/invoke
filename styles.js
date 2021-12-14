@@ -78,7 +78,7 @@ export const Text = styled.Text`
   color: ${white};
   font-size: 18px;
   text-align: center;
-  line-height: 20px;
+  line-height: 25px;
   font-family: 'Tiempos';
   letter-spacing: 0.5px;
 `
@@ -111,4 +111,15 @@ export const Rotated = styled.View`
 export const TopCard = styled.View`
   align-self: center;
   padding: 15px;
+`
+
+export const Description = styled.View`
+  padding: 25px;
+  border: 1px solid ${lavender};
+  border-radius: 10px;
+  background-color: ${eggplant};
+  font-family: 'Tiempos';
+  font-size: 15px;
+  color: ${white};
+  width: 100%;
 `

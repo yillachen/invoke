@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
-import { View, Animated, Modal, Text } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, ScrollView, Modal } from 'react-native'
 import cards from '../../assets/cardsIndex'
 import Loading from '../screens/LoadScreen'
 
 import {
-  Colors,
   Button,
   ButtonText,
   Card,
@@ -14,21 +13,24 @@ import {
   TopCard,
   Reset,
   ResetText,
+  Description,
+  Text,
+  Italic,
+  Title,
 } from '../../styles'
-
-// Colors Import
-const { eggplant } = Colors
 
 export default function Cards() {
   const [firstCard, setFirstCard] = useState(cards.Default)
   const [secondCard, setSecondCard] = useState(cards.Default)
   const [thirdCard, setThirdCard] = useState(cards.Default)
   const [loading, setLoading] = useState(true)
-  const [showModal, setModal] = useState(false)
+  const [showModal1, setModal1] = useState(false)
+  const [showModal2, setModal2] = useState(false)
+  const [showModal3, setModal3] = useState(false)
 
   // picks a random key in cards object
   function randomize(obj) {
-    var keys = Object.keys(obj);
+    var keys = Object.keys(obj)
     return obj[keys[(keys.length * Math.random()) << 0]]
   }
 
@@ -41,11 +43,17 @@ export default function Cards() {
   const flipCards = () => {
     if (firstCard === cards.Default) {
       setFirstCard(randomize(cards))
-      // setModal(true)
+      setModal1(true)
     } else if (firstCard !== cards.Default && secondCard === cards.Default) {
       setSecondCard(randomize(cards))
-    } else if (firstCard !== cards.Default && secondCard !== cards.Default && thirdCard === cards.Default) {
+      setModal2(true)
+    } else if (
+      firstCard !== cards.Default &&
+      secondCard !== cards.Default &&
+      thirdCard === cards.Default
+    ) {
       setThirdCard(randomize(cards))
+      setModal3(true)
     } else {
       alert('All cards are revealed. 🔮')
     }
@@ -62,10 +70,6 @@ export default function Cards() {
     return <Loading />
   }
 
-  console.log('ONE', firstCard)
-  console.log('TWO', secondCard)
-  console.log('THREE', thirdCard)
-
   return (
     <Container>
       <TopCard>
@@ -73,12 +77,6 @@ export default function Cards() {
           <Tarot source={firstCard.image} />
         </Card>
       </TopCard>
-
-      <View>
-        <Button onPress={flipCards}>
-          <ButtonText>Reveal</ButtonText>
-        </Button>
-      </View>
 
       <Rotated>
         <Card style={{ transform: [{ rotate: '22.5deg' }] }}>
@@ -88,6 +86,7 @@ export default function Cards() {
           <Tarot source={thirdCard.image} />
         </Card>
       </Rotated>
+
       <View
         style={{
           position: 'absolute',
@@ -96,20 +95,147 @@ export default function Cards() {
           flexDirection: 'row',
         }}
       >
+        <Reset onPress={flipCards}>
+          <ResetText>Reveal</ResetText>
+        </Reset>
         <Reset onPress={reset}>
           <ResetText>Reset</ResetText>
         </Reset>
       </View>
+
+      {/* First Card Modal */}
       <Modal
-        animationType={'slide'}
-        transparent={false}
-        visible={showModal}
+        animationType={'fade'}
+        transparent={true}
+        visible={showModal1}
         onRequestClose={() => {
-          setModal(false)
+          setModal1(false)
         }}
       >
-        <Text style={{ color: `${eggplant}` }}>{firstCard.description}</Text>
-        <Button onPress={() => setModal(false)}><ButtonText>Close</ButtonText></Button>
+        <Description
+          style={{
+            height: '70%',
+            marginTop: 'auto',
+          }}
+        >
+          <Button
+            onPress={() => setModal1(false)}
+            style={{
+              border: 0,
+              backgroundColor: 'transparent',
+              height: 40,
+              alignSelf: 'flex-end',
+            }}
+          >
+            <Italic>Close</Italic>
+          </Button>
+
+          <ScrollView>
+            <Title style={{ marginBottom: 15 }}>{firstCard.name}</Title>
+
+            {firstCard.description ? (
+              <Italic style={{ marginBottom: 15 }}>{firstCard.words}</Italic>
+            ) : (
+              <></>
+            )}
+
+            {firstCard.description ? (
+              <Text>{firstCard.description}</Text>
+            ) : (
+              <Text>Description coming soon!</Text>
+            )}
+          </ScrollView>
+        </Description>
+      </Modal>
+
+      {/* Second Card Modal  */}
+      <Modal
+        animationType={'fade'}
+        transparent={true}
+        visible={showModal2}
+        onRequestClose={() => {
+          setModal2(false)
+        }}
+      >
+        <Description
+          style={{
+            height: '70%',
+            marginTop: 'auto',
+          }}
+        >
+          <Button
+            onPress={() => setModal2(false)}
+            style={{
+              border: 0,
+              backgroundColor: 'transparent',
+              height: 40,
+              alignSelf: 'flex-end',
+            }}
+          >
+            <Italic>Close</Italic>
+          </Button>
+
+          <ScrollView>
+            <Title style={{ marginBottom: 15 }}>{secondCard.name}</Title>
+
+            {secondCard.description ? (
+              <Italic style={{ marginBottom: 15 }}>{secondCard.words}</Italic>
+            ) : (
+              <></>
+            )}
+
+            {secondCard.description ? (
+              <Text>{secondCard.description}</Text>
+            ) : (
+              <Text>Description coming soon!</Text>
+            )}
+          </ScrollView>
+        </Description>
+      </Modal>
+
+      {/* Third Card Modal */}
+      <Modal
+        animationType={'fade'}
+        transparent={true}
+        visible={showModal3}
+        onRequestClose={() => {
+          setModal3(false)
+        }}
+      >
+        <Description
+          style={{
+            height: '70%',
+            marginTop: 'auto',
+          }}
+        >
+          <Button
+            onPress={() => setModal3(false)}
+            style={{
+              border: 0,
+              backgroundColor: 'transparent',
+              height: 40,
+              alignSelf: 'flex-end',
+            }}
+          >
+            <Italic>Close</Italic>
+          </Button>
+
+          <ScrollView>
+            <Title style={{ marginBottom: 15 }}>{thirdCard.name}</Title>
+
+            {thirdCard.description ? (
+              <Italic style={{ marginBottom: 15 }}>{thirdCard.words}</Italic>
+            ) : (
+              <></>
+            )}
+
+            {thirdCard.description ? (
+              <Text>{thirdCard.description}</Text>
+            ) : (
+              <Text>Description coming soon!</Text>
+            )}
+          </ScrollView>
+        </Description>
       </Modal>
     </Container>
   )
