@@ -23,6 +23,9 @@ export const Button = styled.TouchableOpacity`
 export const ButtonText = styled.Text`
   color: ${silver};
   text-align: center;
+  font-family: 'Tiempos';
+  font-size: 21px;
+  letter-spacing: 0.5px;
 `
 
 export const Card = styled.View`
@@ -30,6 +33,7 @@ export const Card = styled.View`
   background-color: #fff;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 1px 1px 5px ${mauve};
 `
 
 export const Tarot = styled.Image`
@@ -38,23 +42,27 @@ export const Tarot = styled.Image`
 `
 
 export const Container = styled.View`
-  padding: 25px;
+  padding: 50px 25px 25px 25px;
   display: flex;
   justify-content: space-between;
 `
 
 export const Text = styled.Text`
   color: ${silver};
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
   line-height: 20px;
+  font-family: 'Tiempos';
+  letter-spacing: 0.5px;
 `
 
 export const Title = styled.Text`
   color: ${silver};
-  font-size: 21px;
+  font-size: 30px;
   text-align: center;
-  line-height: 30px;
+  line-height: 40px;
+  font-family: 'Tiempos';
+  letter-spacing: 0.5px;
 `
 
 export const Rotated = styled.View`
