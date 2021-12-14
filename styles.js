@@ -58,7 +58,7 @@ export const Tarot = styled.Image`
 `
 
 export const Container = styled.View`
-  padding: 50px 25px 25px 25px;
+  padding: 25px;
   display: flex;
   justify-content: space-between;
 `
@@ -100,4 +100,14 @@ export const Rotated = styled.View`
 export const TopCard = styled.View`
   align-self: center;
   padding: 15px;
+`
+
+export const AboutCard = styled.View`
+  align-self: center;
+  padding: 25px;
+  width: 300px;
+  border: 1px solid ${white};
+  background-color: ${eggplant};
+  position: absolute;
+  z-index: 2;
 `
