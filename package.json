@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@emotion/native": "^11.0.0",
+    "@emotion/react": "^11.7.1",
     "@react-native-async-storage/async-storage": "^1.15.14",
     "@react-native-community/datetimepicker": "3.5.2",
     "@react-native-community/masked-view": "0.1.10",
@@ -29,6 +30,8 @@
     "expo-updates": "~0.10.9",
     "geolib": "^3.3.3",
     "global": "^4.4.0",
+    "lottie-ios": "3.1.8",
+    "lottie-react-native": "^5.0.1",
     "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "17.0.1",
