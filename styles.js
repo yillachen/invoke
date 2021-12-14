@@ -5,9 +5,9 @@ export const Colors = {
   eggplant: '#18020C',
   mauve: '#634B66',
   lavender: '#9590A8',
-  silver: '#BBCBCB',
+  white: '#fff',
 }
-const { eggplant, mauve, lavender, silver } = Colors
+const { eggplant, mauve, lavender, white } = Colors
 
 // Shared Components
 export const Button = styled.TouchableOpacity`
@@ -21,7 +21,7 @@ export const Button = styled.TouchableOpacity`
 `
 
 export const ButtonText = styled.Text`
-  color: ${silver};
+  color: ${white};
   text-align: center;
   font-family: 'Tiempos';
   font-size: 21px;
@@ -48,7 +48,7 @@ export const Container = styled.View`
 `
 
 export const Text = styled.Text`
-  color: ${silver};
+  color: ${white};
   font-size: 18px;
   text-align: center;
   line-height: 20px;
@@ -56,8 +56,17 @@ export const Text = styled.Text`
   letter-spacing: 0.5px;
 `
 
+export const Italic = styled.Text`
+  color: ${white};
+  font-size: 18px;
+  text-align: center;
+  line-height: 20px;
+  font-family: 'Tiempos_Italic';
+  letter-spacing: 0.5px;
+`
+
 export const Title = styled.Text`
-  color: ${silver};
+  color: ${white};
   font-size: 30px;
   text-align: center;
   line-height: 40px;
