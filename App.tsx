@@ -1,9 +1,8 @@
 import 'react-native-gesture-handler'
-import React, { useState } from 'react'
+import React, { createElement } from 'react'
 import { useFonts } from 'expo-font'
 import { decode, encode } from 'base-64'
-import MainStack from './index'
-import Loading from './src/screens/LoadScreen'
+import { MainStack } from './index'
 
 if (!global.btoa) {
   global.btoa = encode
@@ -19,9 +18,8 @@ export default function App() {
   })
 
   if (loaded) {
-    return <MainStack {...loaded} />
+    return createElement(MainStack, { loaded: loaded })
   } else {
     return <></>
   }
-
 }

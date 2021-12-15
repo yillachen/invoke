@@ -4,8 +4,8 @@ import LottieView from 'lottie-react-native'
 import starry_night from '../../assets/starry_night.json'
 import Loading from './LoadScreen'
 import Cards from '../modals/Cards'
-import show from '../../assets/icons/show.png'
-import hide from '../../assets/icons/hide.png'
+const show = require('../../assets/icons/show.png')
+const hide = require('../../assets/icons/hide.png')
 
 import {
   Colors,

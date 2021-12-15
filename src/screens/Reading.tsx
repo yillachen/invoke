@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: eggplant,
     width: '100%',
     height: '100%',
-    position: 'absolute',
+    position: 'absolute'
   },
   tarot: {
     zIndex: -1,

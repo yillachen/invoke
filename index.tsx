@@ -13,7 +13,7 @@ if (!global.atob) {
 
 const Stack = createStackNavigator();
 
-export default function MainStack() {
+export function MainStack() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
