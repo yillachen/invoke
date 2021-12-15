@@ -40,8 +40,8 @@ const cards = {
   Empress: {
     name: 'The Empress',
     image: require('./cards/Empress.jpeg'),
-    words: 'Nuture, Nature, Growth',
-    description: `The Empress shows us how deeply we are embedded to our femininity. Femininity could be associated with fertility, expression, creativity and nurturing among many other aspects. It therefore calls you to connect with beauty and bring happiness to your life. Understand yourself and get in touch with your sensuality so that you can attract life circumstances to bring happiness and joy. She is a signal that be kind to yourself, to take care of yourself.`,
+    words: 'Nurture, Nature, Growth',
+    description: `The Empress shows us how deeply we are embedded to our femininity. Femininity could be associated with growth, expression, creativity and nurturing among many other aspects. It therefore calls you to connect with beauty and bring happiness to your life. Understand yourself and get in touch with your sensuality so that you can attract life circumstances to bring happiness and joy. She is a signal that be kind to yourself, to take care of yourself.`,
   },
   Fool: {
     name: 'The Fool',

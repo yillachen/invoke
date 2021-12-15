@@ -49,8 +49,8 @@ export const Card = styled.View`
 `
 
 export const Tarot = styled.Image`
-  max-width: 100px;
-  max-height: 175px;
+  width: 100px;
+  height: 175px;
 `
 
 export const AboutCard = styled.View`
@@ -70,6 +70,8 @@ export const Container = styled.View`
   justify-content: space-between;
   align-content: center;
   z-index: -1;
+  align-items: stretch;
+  top: 8%;
 `
 
 export const Text = styled.Text`
@@ -97,6 +99,48 @@ export const Title = styled.Text`
   line-height: 40px;
   font-family: 'Tiempos';
   letter-spacing: 0.5px;
+  margin-bottom: 15px;
+`
+
+export const ReadingTitle = styled.Text`
+  color: ${white};
+  font-size: 23px;
+  text-align: left;
+  font-family: 'Tiempos';
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  align-self: flex-start;
+`
+
+export const ReadingName = styled.Text`
+  color: ${white};
+  font-size: 20px;
+  font-family: 'Tiempos';
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  align-self: flex-start;
+  text-align: left;
+`
+
+export const Snippet = styled.Text`
+  color: ${white};
+  font-size: 18px;
+  font-family: 'Tiempos_Italic';
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+  align-self: flex-start;
+  text-align: left;
+  width: 50%;
+  line-height: 25px;
+`
+
+export const ReadingBox = styled.View`
+  border: 1px solid ${mauve};
+  padding: 18px;
+  margin: 10px 0 5px 0;
+  border-radius: 10px;
+  background-color: ${mauve};
 `
 
 export const Rotated = styled.View`

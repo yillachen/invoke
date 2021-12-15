@@ -19,7 +19,7 @@ import {
   Title,
 } from '../../styles'
 
-export default function Cards() {
+export default function Cards(navigation) {
   const [loading, setLoading] = useState(true)
   const [firstCard, setFirstCard] = useState(cards.Default)
   const [secondCard, setSecondCard] = useState(cards.Default)
@@ -87,34 +87,45 @@ export default function Cards() {
         </Card>
       </Rotated>
 
+      {/* Buttons */}
       <View
         style={{
-          position: 'absolute',
-          bottom: `30%`,
           alignSelf: 'center',
           flexDirection: 'row',
+          paddingTop: 100
         }}
       >
-        <Reset onPress={flipCards}>
-          <ResetText>Reveal</ResetText>
-        </Reset>
+        {firstCard !== cards.Default &&
+        secondCard !== cards.Default &&
+        thirdCard !== cards.Default &&
+        !showModal3 ? (
+          <Reset
+            onPress={() =>
+              navigation.navigate('Reading', {
+                firstCard: firstCard,
+                secondCard: secondCard,
+                thirdCard: thirdCard,
+              })
+            }
+          >
+            <ResetText>Go to Reading</ResetText>
+          </Reset>
+        ) : (
+          <Reset onPress={flipCards}>
+            <ResetText>Reveal</ResetText>
+          </Reset>
+        )}
+
         <Reset onPress={reset}>
           <ResetText>Reset</ResetText>
         </Reset>
       </View>
 
       {/* First Card Modal */}
-      <Modal
-        animationType={'fade'}
-        transparent={true}
-        visible={showModal1}
-        onRequestClose={() => {
-          setModal1(false)
-        }}
-      >
+      <Modal animationType={'fade'} transparent={true} visible={showModal1}>
         <Description
           style={{
-            height: '60%',
+            height: '30%',
             marginTop: 'auto',
           }}
         >
@@ -128,33 +139,22 @@ export default function Cards() {
           </Button>
 
           <Title style={{ marginBottom: 15 }}>{firstCard.name}</Title>
-          {firstCard.description ? (
-            <Italic style={{ marginBottom: 15 }}>{firstCard.words}</Italic>
+          {firstCard.words ? (
+            <Italic style={{ marginBottom: 15 }}>
+              This card invokes {'\n'}
+              {firstCard.words}
+            </Italic>
           ) : (
-            <></>
+            <Italic>Description coming soon!</Italic>
           )}
-          <ScrollView>
-            {firstCard.description ? (
-              <Text>{firstCard.description}</Text>
-            ) : (
-              <Text>Description coming soon!</Text>
-            )}
-          </ScrollView>
         </Description>
       </Modal>
 
       {/* Second Card Modal  */}
-      <Modal
-        animationType={'fade'}
-        transparent={true}
-        visible={showModal2}
-        onRequestClose={() => {
-          setModal2(false)
-        }}
-      >
+      <Modal animationType={'fade'} transparent={true} visible={showModal2}>
         <Description
           style={{
-            height: '60%',
+            height: '30%',
             marginTop: 'auto',
           }}
         >
@@ -168,33 +168,21 @@ export default function Cards() {
           </Button>
 
           <Title style={{ marginBottom: 15 }}>{secondCard.name}</Title>
-          {secondCard.description ? (
-            <Italic style={{ marginBottom: 15 }}>{secondCard.words}</Italic>
+          {secondCard.words ? (
+            <Italic style={{ marginBottom: 15 }}>
+              This card invokes {'\n'} {secondCard.words}
+            </Italic>
           ) : (
-            <></>
+            <Italic>Description coming soon!</Italic>
           )}
-          <ScrollView>
-            {secondCard.description ? (
-              <Text>{secondCard.description}</Text>
-            ) : (
-              <Text>Description coming soon!</Text>
-            )}
-          </ScrollView>
         </Description>
       </Modal>
 
       {/* Third Card Modal */}
-      <Modal
-        animationType={'fade'}
-        transparent={true}
-        visible={showModal3}
-        onRequestClose={() => {
-          setModal3(false)
-        }}
-      >
+      <Modal animationType={'fade'} transparent={true} visible={showModal3}>
         <Description
           style={{
-            height: '60%',
+            height: '30%',
             marginTop: 'auto',
           }}
         >
@@ -208,18 +196,14 @@ export default function Cards() {
           </Button>
           <Title style={{ marginBottom: 15 }}>{thirdCard.name}</Title>
 
-          {thirdCard.description ? (
-            <Italic style={{ marginBottom: 15 }}>{thirdCard.words}</Italic>
+          {thirdCard.words ? (
+            <Italic style={{ marginBottom: 15 }}>
+              This card invokes{'\n'}
+              {thirdCard.words}
+            </Italic>
           ) : (
-            <></>
+            <Italic>Description coming soon!</Italic>
           )}
-          <ScrollView>
-            {thirdCard.description ? (
-              <Text>{thirdCard.description}</Text>
-            ) : (
-              <Text>Description coming soon!</Text>
-            )}
-          </ScrollView>
         </Description>
       </Modal>
     </Container>

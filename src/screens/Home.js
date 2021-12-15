@@ -7,7 +7,15 @@ import Cards from '../modals/Cards'
 import show from '../../assets/icons/show.png'
 import hide from '../../assets/icons/hide.png'
 
-import { Colors, Title, AboutCard, Text, Button, Italic } from '../../styles'
+import {
+  Colors,
+  Title,
+  AboutCard,
+  Text,
+  Button,
+  Italic,
+  Container,
+} from '../../styles'
 
 // Colors Import
 const { eggplant } = Colors
@@ -27,13 +35,13 @@ export default function Home({ navigation }) {
 
   return (
     <LottieView style={styles.main} source={starry_night} autoPlay>
-      <View style={{ paddingTop: `25%` }}>
+      <Container>
         <Title>Invoke</Title>
 
         <View
           style={{
             position: 'absolute',
-            top: 90,
+            top: 15,
             left: 15,
           }}
         >
@@ -52,7 +60,7 @@ export default function Home({ navigation }) {
               onPress={() => setHowto(false)}
               style={{
                 alignSelf: 'flex-end',
-                zIndex: 1
+                zIndex: 1,
               }}
             >
               <Italic>Close</Italic>
@@ -69,8 +77,8 @@ export default function Home({ navigation }) {
             </Text>
           </AboutCard>
         </Modal>
-      </View>
-      <Cards />
+      </Container>
+      <Cards {...navigation} />
     </LottieView>
   )
 }
