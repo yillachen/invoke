@@ -102,6 +102,7 @@ const styles = StyleSheet.create({
     zIndex: -1,
     opacity: 0.8,
     alignSelf: 'flex-end',
-    marginBottom: -160,
+    marginBottom: -150,
+    maxHeight: 150
   },
 })

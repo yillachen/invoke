@@ -27,7 +27,7 @@ export const ButtonText = styled.Text`
 export const Reset = styled.TouchableOpacity`
   border-radius: 10px;
   background-color: ${lavender};
-  box-shadow: 1px 1px 5px ${lavender};
+  box-shadow: 1px 1px 3px ${lavender};
   padding: 10px 15px 10px 15px;
   margin: 0 25px 0 25px;
 `
@@ -131,16 +131,17 @@ export const Snippet = styled.Text`
   margin-bottom: 15px;
   align-self: flex-start;
   text-align: left;
-  width: 50%;
+  width: 60%;
   line-height: 25px;
 `
 
 export const ReadingBox = styled.View`
   border: 1px solid ${mauve};
   padding: 18px;
-  margin: 10px 0 5px 0;
+  margin: 10px 0 10px 0;
   border-radius: 10px;
   background-color: ${mauve};
+  box-shadow: 1px 1px 3px ${lavender};
 `
 
 export const Rotated = styled.View`

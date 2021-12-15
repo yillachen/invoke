@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, ScrollView, Modal } from 'react-native'
+import { View, Modal } from 'react-native'
 import cards from '../../assets/cardsIndex'
 import Loading from '../screens/LoadScreen'
 
@@ -14,7 +14,6 @@ import {
   Reset,
   ResetText,
   Description,
-  Text,
   Italic,
   Title,
 } from '../../styles'
