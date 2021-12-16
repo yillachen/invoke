@@ -5,7 +5,6 @@ import Loading from '../screens/LoadScreen'
 
 import {
   Button,
-  ButtonText,
   Card,
   Container,
   Tarot,
